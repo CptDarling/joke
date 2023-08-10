@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dad Joke</title>
+  <link rel="stylesheet" href="style.css">
   <script>
     const URL = 'https://icanhazdadjoke.com/';
 
-      function getJoke() {
-        const headers = {}
+    function getJoke() {
+      const headers = {}
 
-        return fetch(URL, {
-          headers: {
-            "Accept": "text/plain",
-          }
+      return fetch(URL, {
+        headers: {
+          "Accept": "text/plain",
+        }
+      })
+        .then(response => response.text())
+        .then((text) => {
+          <!-- console.log(text); -->
+          return text;
         })
-          .then(response => response.text())
-          .then((text) => {
-            <!-- console.log(text); -->
-            return text;
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      }
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
 
-      function joke() {
-        getJoke()
-          .then((joke) => {
-            document.getElementById("joke").innerText = joke;
-          });
-      }
+    function joke() {
+      getJoke()
+        .then((joke) => {
+          document.getElementById("joke").innerText = joke;
+        });
+    }
   </script>
 </head>
+
 <body onload="joke()">
-  <div id="joke"></div>
+  <!-- <header></header> -->
+  <section class="center">
+    <div class="boxout">
+      <div id="joke"></div>
+    </div>
+  </section>
+  <!-- <footer></footer> -->
 </body>
+
 </html>

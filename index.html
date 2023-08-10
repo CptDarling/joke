@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dad Joke</title>
+  <script>
+    const URL = 'https://icanhazdadjoke.com/';
+
+      function getJoke() {
+        const headers = {}
+
+        return fetch(URL, {
+          headers: {
+            "Accept": "text/plain",
+          }
+        })
+          .then(response => response.text())
+          .then((text) => {
+            <!-- console.log(text); -->
+            return text;
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+
+      function joke() {
+        getJoke()
+          .then((joke) => {
+            document.getElementById("joke").innerText = joke;
+          });
+      }
+  </script>
+</head>
+<body onload="joke()">
+  <div id="joke"></div>
+</body>
+</html>
